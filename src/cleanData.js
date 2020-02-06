@@ -5,10 +5,10 @@ const Filter = require('bad-words')
 
 function cleanData(data, profanityFilter) {
     let clean = data.map(c => {
-        return c.replace(/(&#39;)/g, '\'').replace(/(&quot;)/g, '"').replace(/(<br \/>)/g, ' ')
+        return c.replace(/(&#39;)/g, '\'').replace(/(&quot;)/g, '"').replace(/(<br \/>)/g, ' ').replace(/(^href.*)/g, '').replace(/(<a.*)/g, '')
     })
 
-    if (profanityFilter) {
+    if (profanityFilter === 'true') {
         const filter = new Filter()
         return clean.map(comment => {
             return filter.clean(comment).split(' ').map(word => {
@@ -20,15 +20,18 @@ function cleanData(data, profanityFilter) {
             })
         })
     } else {
-            return clean.map(comment => {
-                return comment.split(' ').map(word => {
+        return clean.map(comment => {
+            let c = comment.split(' ').map(word => {
+                if (word.length && !word.match(/(^href.*)/g) && !word.match(/(<a.*)/g, '')) {
                     let newWord = word
                     let syllables = syllable(newWord)
-                    if (newWord.length < 20) {
+                    if (newWord.length < 20 && syllables > 0) {
                         return { word: newWord, syllables }
                     }
-                })
+                }
             })
+            return c.filter(w => w != undefined)
+        })
     }
 }
 
