@@ -1,0 +1,4 @@
+CREATE TABLE Poems (
+    id TEXT PRIMARY KEY NOT NULL,
+    title TEXT NOT NULL
+);

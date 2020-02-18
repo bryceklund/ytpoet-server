@@ -8,7 +8,9 @@
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "predeploy": "npm audit",
-    "deploy": "git push heroku master"
+    "deploy": "git push heroku master",
+    "migrate": "postgrator --config postgrator-config.js",
+    "migrate:production": "env SSL=true DATABASE_URL=$(heroku config:get DATABASE_URL) npm run migrate"
   },
   "keywords": [],
   "author": "",
@@ -20,9 +22,15 @@
     "express": "^4.17.1",
     "find-config": "^1.0.0",
     "helmet": "^3.18.0",
+    "knex": "^0.20.9",
+    "logger": "0.0.1",
     "morgan": "^1.9.1",
     "node-fetch": "^2.6.0",
-    "syllable": "^4.0.1"
+    "pg": "^7.18.1",
+    "postgrator": "^3.11.0",
+    "syllable": "^4.0.1",
+    "uuid": "^3.4.0",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",

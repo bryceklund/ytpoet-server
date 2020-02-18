@@ -11,7 +11,6 @@ function scrambleInput(arr) {
 function makeLine(words, syllables) {
     let result = ''
     let syllCount = 0
-    console.log('from makeLine:', words)
     words.forEach(w => {
         try {
             if (w.syllables + syllCount <= syllables && w.word !== null) {
@@ -23,41 +22,45 @@ function makeLine(words, syllables) {
         return result
 }
 
-function generatePoem(words, options) {
-    const { type } = options
-    let syllables, lines, rhyme
+function generatePoem(words, poemType, syllables, lines) {
     //const startingIndex = Math.floor(Math.random() * (words.length - lines))
     const scrambled = scrambleInput(words)
-    let result = []
-    switch(type) {
+    let result = {
+        title: '',
+        body: []
+    }
+    const titleComment = scrambled[Math.floor(Math.random() * scrambled.length)]
+    const slice1 = Math.floor(Math.random() * titleComment.length)
+    const slice2 = Math.floor(Math.random() * (titleComment.length - slice1)) + slice1
+    titleComment.slice(slice1, slice2).length ? titleComment.slice(slice1, slice2).forEach(w => result.title += w.word + ' ') : result.title = titleComment[0].word
+
+    switch(poemType) {
         case 'custom':
-            syllables = parseInt(options.syllables)
-            lines = parseInt(options.lines)
-            rhyme = options.rhyme
+            syllables = parseInt(syllables)
+            lines = parseInt(lines)
+            console.log(lines, syllables)
         break
         case 'haiku':
             syllables = [5, 7, 5]
             lines = 3
-            rhyme = false
         break
         case 'sonnet':
             syllables = 10
             lines = 14
-            rhyme = true
         break
     }
     if (typeof syllables === 'object') {
         syllables.forEach((s, i) => {
-            result.push(makeLine(scrambled[i], s))
+            result.body.push(makeLine(scrambled[i], s))
         })
         return result
     } else {
         let i = 0
-        while (result.length < lines && lines >= i) {
+        while (result.body.length < lines && lines >= i) {
             while (!makeLine(scrambled[i], syllables)) {
                 i++
             }
-            result.push(makeLine(scrambled[i], syllables))
+            result.body.push(makeLine(scrambled[i], syllables))
             i++
         }
         return result
@@ -1201,7 +1204,7 @@ const testData = [
     ]
 ]
 
-const options = { type: 'haiku' }
+const options = { poemType: 'haiku' }
 
 //console.log(generatePoem(testData, options))
 
