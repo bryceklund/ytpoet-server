@@ -3,7 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
-const { NODE_ENV } = require('./config');
+const { NODE_ENV, CLIENT_ORIGIN } = require('./config');
 const poemRouter = require('./poemRouter')
 
 const app = express();
@@ -11,7 +11,10 @@ const app = express();
 const morganOption = (NODE_ENV === 'production') ? 'tiny' : 'dev';
 
 app.use(morgan(morganOption));
-app.use(cors());
+app.use(cors({ 
+    'origin': CLIENT_ORIGIN,
+    'optionsSuccessStatus': 200
+}));
 app.use(helmet());
 app.use(poemRouter)
 /*
