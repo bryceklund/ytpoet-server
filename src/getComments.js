@@ -25,7 +25,7 @@ async function getComments(videoUrl) {
             })
             .then(res => {
                 console.log('response complete: ', res)
-                res.items.map(item => item.snippet.topLevelComment.snippet.textDisplay)
+                return res.items.map(item => item.snippet.topLevelComment.snippet.textDisplay)
             })
             .then(data => {
                 console.log(data)
