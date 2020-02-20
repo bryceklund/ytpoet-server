@@ -29,6 +29,7 @@ async function getComments(videoUrl) {
             })
         return results
     } catch(err) {
+        console.log(err)
         return `Error in GET request to YT API: ${err}`
     }
 }
