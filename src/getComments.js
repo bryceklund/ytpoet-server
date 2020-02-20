@@ -18,12 +18,13 @@ async function getComments(videoUrl) {
         const results = await fetch(url, options)
             .then(res => {
                 if (!res.ok) {
-                    console.log(res)
+                    console.log('response errored: ', res)
                     return new Error('Error in GET request.')
                 }
                 return res.json()
             })
             .then(res => {
+                console.log('response complete: ', res)
                 res.items.map(item => item.snippet.topLevelComment.snippet.textDisplay)
             })
             .then(data => {
