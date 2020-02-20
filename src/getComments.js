@@ -24,7 +24,6 @@ async function getComments(videoUrl) {
                 return res.json()
             })
             .then(res => {
-                console.log('response complete: ', res)
                 return res.items.map(item => item.snippet.topLevelComment.snippet.textDisplay)
             })
             .then(data => {

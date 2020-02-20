@@ -14,6 +14,10 @@ PoemRouter.route('/api/generate')
         const { poemType, syllables, lines, profanity, url } = req.body
         getComments(url)
             .then(data => cleanData(data, profanity))
+            .then(result => {
+                console.log('clean data: ', result)
+                return result
+            })
             .then(clean => {
                 res.send(generatePoem(clean, poemType, syllables, lines))
             })
