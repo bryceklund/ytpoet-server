@@ -15,7 +15,6 @@ PoemRouter.route('/api/generate')
         getComments(url)
             .then(data => cleanData(data, profanity))
             .then(result => {
-                console.log('clean data: ', result)
                 return result
             })
             .then(clean => {
