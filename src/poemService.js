@@ -10,6 +10,9 @@ const PoemService = {
     },
     savePoem(knex, content) {
         return knex('poems').insert(content).returning('*')
+    },
+    getPoemIds(knex) {
+        return knex.select('id').from('poems')
     }
 }
 
