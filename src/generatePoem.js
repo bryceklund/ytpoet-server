@@ -49,11 +49,11 @@ function generatePoem(words, poemType, syllables, lines) {
         break
         case 'rondel':
             syllables = 8
-            lines = 13
+            lines = 15
         break
         case 'indriso':
             syllables = 12
-            lines = 8
+            lines = 11
         break
     }
     if (typeof syllables === 'object') { //covers the haiku 5/7/5 case
@@ -74,7 +74,7 @@ function generatePoem(words, poemType, syllables, lines) {
                     result.body.push(makeLine(scrambled[i], syllables))
                 }
             } else if (poemType === 'indriso') {
-                if (result.body.length === 3 || result.body.length === 7) {
+                if (result.body.length === 3 || result.body.length === 7 || result.body.length === 9) {
                     result.body.push([' '])
                 } else {
                     result.body.push(makeLine(scrambled[i], syllables))
