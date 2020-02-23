@@ -81,7 +81,7 @@ PoemRouter.route('/api/random')
             .then(data => {
                 console.log(data)
                 const random = Math.floor(Math.random() * data.length)
-                return data[random]
+                return data[random].id
             })
             .then(id => res.send(id))
             .catch(next)
