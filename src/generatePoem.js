@@ -73,13 +73,13 @@ function generatePoem(words, poemType, syllables, lines) {
             }
             if (poemType === 'rondel') {
                 if (result.body.length === 4 || result.body.length === 9) {
-                    result.body.push([' '])
+                    result.body.push(null)
                 } else {
                     result.body.push(makeLine(scrambled[i], syllables))
                 }
             } else if (poemType === 'indriso') {
                 if (result.body.length === 3 || result.body.length === 7 || result.body.length === 9) {
-                    result.body.push([' '])
+                    result.body.push(null)
                 } else {
                     result.body.push(makeLine(scrambled[i], syllables))
                 }
