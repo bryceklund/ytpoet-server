@@ -79,8 +79,8 @@ PoemRouter.route('/api/random')
         const knexInstance = req.app.get('db')
         PoemService.getPoemIds(knexInstance)
             .then(data => {
-                console.log(data[3].id)
                 const random = Math.floor(Math.random() * data.length)
+                console.log(data.length, random)
                 return data[random].id
             })
             .then(id => res.send(id))
