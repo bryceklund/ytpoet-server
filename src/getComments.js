@@ -6,7 +6,7 @@ const fetch = require('node-fetch')
 async function getComments(videoUrl) {
     let result = []
     const videoId = videoUrl.match(/^.*(youtu.be\/|v\/|e\/|u\/\w+\/|embed\/|v=)([^#\&\?]*).*/)[2]
-    const url = `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&maxResults=30&videoId=${videoId}&key=${API_KEY}`
+    const url = `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&maxResults=50&videoId=${videoId}&key=${API_KEY}`
     const options = {
         'method': 'GET',
         'headers': {

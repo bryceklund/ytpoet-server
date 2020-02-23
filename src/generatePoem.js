@@ -33,6 +33,10 @@ function generatePoem(words, poemType, syllables, lines) {
     const slice1 = Math.floor(Math.random() * titleComment.length)
     const slice2 = Math.floor(Math.random() * (titleComment.length - slice1)) + slice1
     titleComment.slice(slice1, slice2).length ? titleComment.slice(slice1, slice2).forEach(w => result.title += w.word + ' ') : result.title = titleComment[0].word
+    if (result.title.split(' ').length > 5) {
+        let temp = result.title.split(' ')
+        result.title = temp.slice(0, 5).join('')
+    }
 
     switch(poemType) {
         case 'custom':
