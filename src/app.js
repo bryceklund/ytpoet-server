@@ -17,7 +17,7 @@ app.use(cors({
 }));
 app.use(helmet());
 app.use(poemRouter)
-/*
+
 app.use(function validateBearerToken(req, res, next) {
     const apiToken = process.env.API_TOKEN;
     console.log(apiToken)
@@ -28,7 +28,7 @@ app.use(function validateBearerToken(req, res, next) {
         res.status(401).json({ error: 'Unauthorized request' })
     };
     next();
-});*/
+});
 
 app.get('/', (req, res) => {
     res.send('HELL WORLD')
