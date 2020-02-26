@@ -8,7 +8,7 @@ Frontend repo: https://github.com/bryceklund/ytpoet-client
 - Database built with PostgreSQL 
 
 
-## Summary / How-To
+## Summary of Endpoints
 ### POST /api/generate
 - Accepts poem type, syllable count, line count, profanity (boolean), and video url
 - Returns a JSON object with keys "title" and "body"
