@@ -4,6 +4,7 @@ Welcome! Check out the live app at https://ytpoet.bryceklund.dev/
 Frontend repo: https://github.com/bryceklund/ytpoet-client
 
 ## Technologies Used
+- Comments grabbed via the YouTube API
 - Server built with Node.js and Express
 - Database built with PostgreSQL 
 
